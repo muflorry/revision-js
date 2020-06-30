@@ -30,7 +30,13 @@
 
     <script>
         // Code JS à écrire ici
-
+        let target = document.querySelector('body');
+        document.querySelector('#color-field').addEventListener('keyup', function(){
+            let background = document.querySelector('#color-field').value;
+            if( background.match(/^[0-9][a-fA-F]{6}$/) ){
+                target.style.backgroundColor = '#' + background;
+            }
+        });
 
 
     </script>
