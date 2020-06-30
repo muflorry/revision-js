@@ -95,7 +95,13 @@
 
     <script>
         // Code JS à écrire ici
+        let titles = document.querySelectorAll('.li');
 
+        titles.forEach(function(title){
+            title.addEventListener('click', function(){
+                this.style.color = 'red';
+            });
+        });
 
 
     </script>
