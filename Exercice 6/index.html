@@ -42,8 +42,34 @@
 
     <script>
         // Code JS à écrire ici
+        document.querySelector('#counter-view').ready(function(){
+            let count = 0;
+            let start = false;
+            let stop = false;
+            document.querySelector('#start').click(function(){
+                Start();
+            });
+            document.querySelector('#stop').click(function(){
+                Stop();
+            });
+            function chrono(){
+                count += 1;
+                function Start(){
+                    if(start===false){
+                        timerID = setInterval(chrono,2000);
+                        start = true;
+                        stop = false;
+                    }
+                }
+                function Stop(){
+                    if(on===true){
+                        on = false;
+                        clearTimeout(timerID);
+                    }
+                }
+            }
 
-
+        });
 
     </script>
 </body>
