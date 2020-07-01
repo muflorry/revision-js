@@ -24,26 +24,13 @@
 
     <script>
         // Code JS à écrire ici
-        let title = document.querySelector('h1');
-        document.querySelector('button[data-color=red]').addEventListener('click', function(){
-            title.classList.add('red');
-            title.classList.remove('blue','green','pink');
+        document.querySelectorAll('.start').forEach(function(item){
+            item.addEventListener('click', function(){
+                let color = this.dataset.color;
+                document.querySelector('h1').className = color;
+            });
         });
 
-        document.querySelector('button[data-color=blue]').addEventListener('click', function(){
-            title.classList.add('blue');
-            title.classList.remove('red','green','pink');
-        });
-
-        document.querySelector('button[data-color=green]').addEventListener('click', function(){
-            title.classList.add('green');
-            title.classList.remove('blue','red','pink');
-        });
-
-        document.querySelector('button[data-color=pink]').addEventListener('click', function(){
-            title.classList.add('pink');
-            title.classList.remove('blue','green','red');
-        });
     </script>
 </body>
 </html>

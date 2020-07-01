@@ -17,9 +17,8 @@
 
     <script>
         // Code JS à écrire ici
-        let title = prompt('Nouveau contenu du titre ?');
         documment.querySelector('#start').addEventListener('click', function(){
-            alert(title);
+            documment.querySelector('h1').textContent = prompt('Nouveau contenu du titre ?');
         });
 
 

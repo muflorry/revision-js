@@ -42,33 +42,57 @@
 
     <script>
         // Code JS à écrire ici
-        document.querySelector('#counter-view').ready(function(){
-            let count = 0;
-            let start = false;
-            let stop = false;
-            document.querySelector('#start').click(function(){
-                Start();
-            });
-            document.querySelector('#stop').click(function(){
-                Stop();
-            });
-            function chrono(){
-                count += 1;
-                function Start(){
-                    if(start===false){
-                        timerID = setInterval(chrono,2000);
-                        start = true;
-                        stop = false;
-                    }
+        let counter = {
+
+            startButton: document.querySelector('#start'),
+            stopButton: document.querySelector('#stop'),
+            htmlView: document.querySelector('#counter-view'),
+            intervalLoop: null,
+            inProcess: false,
+
+            start: function(){
+
+                if(this.inProcess){
+                    return;
                 }
-                function Stop(){
-                    if(start===true){
-                        start = false;
-                        clearTimeout(timerID);
-                    }
+
+                this.inProcess = true;
+
+                this.startButton.disabled = true;
+                this.stopButton.disabled = false;
+
+                this.intervalLoop = setInterval(() => {
+
+                    this.htmlView.textContent++;
+
+                }, 200);
+
+            },
+
+            stop: function(){
+
+                if(!this.inProcess){
+                    return;
                 }
+
+                this.inProcess = false;
+
+                this.startButton.disabled = false;
+                this.stopButton.disabled = true;
+
+                clearInterval(this.intervalLoop);
+
             }
 
+        };
+
+
+        document.querySelector('#start').addEventListener('click', function(){
+            counter.start();
+        });
+
+        document.querySelector('#stop').addEventListener('click', function(){
+            counter.stop();
         });
 
     </script>
