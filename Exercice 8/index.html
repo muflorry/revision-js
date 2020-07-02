@@ -32,6 +32,49 @@
     <script>
         // Code JS à écrire ici
 
+        let overlay = document.createElement('.overlay');
+        overlay.id = 'overlay';
+        document.querySelector('#start').after(overlay);
+
+        // Fonction permettant d'afficher l'overlay avec icône de chargement
+        function setOverlay(){
+            document.querySelector('body').append('<div class="overlay"><img src="img/ajax-loader.svg"></div>');
+        }
+        // Fonction permettant de supprimer l'overlay créé par la fonction setOverlay()
+        function removeOverlay(){
+            let overlay = document.createElement('#overlay');
+            overlay.remove(overlay);
+        }
+        let view = document.querySelector('#view');
+        document.querySelector('#start').addEventListener('click', function(){
+
+            // Mise en place de l'overlay
+            setOverlay();
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'https://api.thecatapi.com/v1/images/search?size=full');
+            xhr.send(null);
+            xhr.addEventListener('readystatechange', function(){
+
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+                    let data = JSON.parse(xhr.responseText);
+                    let url = data[0].url;
+                    let image = document.createElement('img');
+
+                    image.src = url;
+
+                    view.innerHTML = "";
+                    view.prepend(image);
+                } else {
+                    alert('Problème avec le serveur');
+                }
+            });
+
+            // Suppression de l'overlay
+            removeOverlay();
+
+        });
 
 
     </script>

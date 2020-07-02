@@ -25,7 +25,7 @@
     <script>
         // Code JS à écrire ici
         function randomBetween(min, max){
-            return Math.floor(Math.random() * (min, max + 1) ) + min;
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
         document.querySelector('#start').addEventListener('mouseenter',function(){
             let buttonWidth = this.offsetWidth;
@@ -38,7 +38,7 @@
 
             this.style.position ='absolute';
             this.style.top = randomBetween(minY, maxY) + 'px';
-            this.style.left = randomBetween(minY, maxY) + 'px';
+            this.style.left = randomBetween(minX, maxX) + 'px';
         });
 
     </script>
